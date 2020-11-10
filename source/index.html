@@ -16,10 +16,11 @@
 
   </head>
   <body>
-    <div class="blue"></div>
 
     <header class="page-header">Hello world</header>
-    <button id="button">Delete selected row</button>
+<!--     <button id="button">Delete selected row</button>
+ -->    <button type="submit">Submit form</button>
+
 
     <table id="table_id" class="display" cellspacing="0" width="100%">
       <thead>
@@ -35,36 +36,25 @@
               <td>Row 1 Data 2</td>
               <td>Row 1 Data 2</td>
           </tr>
-          <tr class="row">
-              <td>Row 2 Data 1</td>
-              <td>Row 2 Data 2</td>
-              <td>Row 1 Data 2</td>
-          </tr>
       </tbody>
     </table>
 
-
-  <!-- Скрипт для загрузки данных из json -->
-<!--   <script>
-  $(document).ready( function () {
-      $('#table_id').dataTable({
-        "ajax":"data.json",
-             "columns": [
-            { "data": "author.name" },
-            { "data": "telephone.number" },
-            { "data": "address.street" }
-            ]
-      });
-  });
-  </script> -->
 
 
   <!-- Скрипт для dblclick  по ячейке -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 
+    <script src = "./js/dist/bindings/inputmask.binding.js"></script >
+
     <script>
-      var table = $('#table_id').dataTable({
-        "ajax": "data.json",
+      var table = $('#table_id').DataTable({
+        "ajax":
+              {
+               "url": "data.json",
+               "dataType": "json",
+               "dataSrc": "data"
+           },
+
          "columns": [
             { "data": "author.name" },
             { "data": "telephone.number" },
@@ -72,34 +62,40 @@
             ]
         });
 
-      table.on( 'dblclick', function ( e, settings, json ) {
+
+      table.on( 'dblclick', 'tr td:nth-child(2)', function ( e, settings, json ) {
           console.log( 'Произошло событие Ajax. Возвращенные данные:', json );
-          var divdbl = $( "td" );
-            divdbl.toggleClass( "dbl" );
-      } );
 
-    </script>
+          $( "#myForm" ).detach();
+          $( ".dbl" ).removeClass();
 
-    <!-- Скрипт для выбора строки и ее взможного удаления-->
-    <!-- <script>
-      $(document).ready(function() {
-          var table = $('#table_id').dataTable();
+          $(this).toggleClass( "dbl" );
 
-        $('#table_id tbody').on( 'click', 'tr', function () {
-            if ( $(this).hasClass('selected') ) {
-                $(this).removeClass('selected');
-            }
-            else {
-                table.$('tr.selected').removeClass('selected');
-                $(this).addClass('selected');
-            }
-        });
+          var valueForAttr = $(this).text();
 
-        $('#button').click( function () {
-            table.row('.selected').remove().draw( false );
-        });
+          $(this).attr( "data-order", valueForAttr);
+
+          $(this).append( "<form action='#' id='myForm'><input type='tel' id='telephone' class='telephone-example' name='phone' required pattern='^\+\d[-]\(\d{3}\)[-]\d{3}[-]\d{2}[-]\d{2}$'/><input class='form-submit' type='submit' value='Сохранить' /></form>" );
+
+          // $(this).find( '#telephone' ).attr( "placeholder", valueForAttr);
+          // $(this).find( '#telephone' ).attr( "value", valueForAttr);
+
+          $(this).find('#telephone').attr( "data-inputmask", '99-9999999');
+
+
+
+          // $('#telephone').inputmask("+9-(999)-999-99-99");
+
+
+          $('.form-submit').click( function() {
+            var data = table.$('input').serialize();
+            alert(
+                "Данные отправлены"
+            );
+            return false;
+          });
+
       });
     </script>
- -->
   </body>
 </html>
