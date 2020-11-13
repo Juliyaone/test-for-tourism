@@ -10,14 +10,16 @@ $(document).ready(function() {
 
 
     //Находим данные из ячейки
-    var valueForAttr = $(this).text();
+    var valueTd = $(this).text();
+
+    // $(this).text('');
 
     //Добавляем форму для редактирования телефона
-    $(this).append( "<form action='#' id='myForm' enctype='multipart/form-data'><input type='tel' id='phone' class='telephone-example' name='phone' minlength ='18' required /><label class='phone-error visually-hidden' for='phone'>Заполните это поле</label><input class='form-submit' type='submit' value='Сохранить'/></form>" );
+    $(this).append( "<form action='#' id='myForm' enctype='multipart/form-data'><input type='tel' id='phone' class='telephone-example' name='phone' minlength ='18' required /><input class='form-submit' type='submit' value='Сохранить'/></form>" );
 
     // Добавляем атрибут value в поле ввода телефона и добавляем атрибуту данные из ячейки
 
-    $(this).find( "#phone" ).attr( "value", valueForAttr);
+    $(this).find( "#phone" ).attr( "value", valueTd);
     $(this).find( "#phone" ).attr( "placeholder", "+7-(999)-999-99-99");
 
 
@@ -29,39 +31,36 @@ $(document).ready(function() {
 
 
 
+    // // При потере фокуса поля с телефоном форма отправит валидные данные и удалится
+    // $( "#phone" ).blur( function(evt) {
+    //   evt.preventDefault();
 
+    //   var dataInput = $( "#phone" ).val();
 
-
-
+    //   validate(dataInput);
+    // });
 
 
 
     // При нажатии на кнопку submit форма отправит данные и удалится
-    $( "#myForm" ).submit( function(evt) {
+    $( ".form-submit" ).click( function(evt) {
       evt.preventDefault();
+
       var dataInput = $( "#phone" ).val();
-      console.log(dataInput);
+
       validate(dataInput);
-      // console.log(dataInputValue);
-      // $(this).submit();
-      // $('#myForm').remove();
-      // return false;
     });
 
 
 
     // При нажатии на enter форма отправит данные и удалится
     $( "#phone" ).on('keydown', function(evt) {
-      // evt.preventDefault();
       if (evt.keyCode === 13) {
-        var dataInput = $( "#phone" ).val();
-        console.log(dataInput);
-        validate(dataInput);
-        // console.log(dataInputValue);
-        // $(this).submit();
-        // $('#myForm').remove();
-      }
 
+        var dataInput = $( "#phone" ).val();
+
+        validate(dataInput);
+      }
     });
   });
 });
