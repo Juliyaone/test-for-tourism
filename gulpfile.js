@@ -36,6 +36,16 @@ gulp.task("data", function () {
     .pipe(gulp.dest("build"))
 });
 
+gulp.task("libs", function () {
+  return gulp.src("source/libs/code.jquery.comjquery-3.5.1.min.js")
+    .pipe(gulp.dest("build/libs"))
+});
+
+gulp.task("inputmask", function () {
+  return gulp.src("source/libs/jquery.inputmask.min.js")
+    .pipe(gulp.dest("build/libs"))
+});
+
 gulp.task("images", function () {
   return gulp.src("source/img/**/*.{png,jpg,svg}")
     .pipe(imagemin([
@@ -104,5 +114,5 @@ gulp.task("copy", function () {
     .pipe(gulp.dest("build"));
 });
 
-gulp.task("build", gulp.series("clean", "copy", "css", "sprite", "data", "html"));
+gulp.task("build", gulp.series("clean", "copy", "css", "sprite", "data", "libs", "inputmask", "html"));
 gulp.task("start", gulp.series("build", "server"));
