@@ -2,6 +2,9 @@ $(document).ready(function() {
 
   $("#table_id").on( 'dblclick', 'tr td', function ( evt ) {
 
+    //клонируем из template форму функция вернет formClone
+    cloneTemplate();
+
     $( "#myForm" ).remove();
     $( ".background-cell--active" ).removeClass();
 
@@ -12,10 +15,8 @@ $(document).ready(function() {
     //Находим данные из ячейки
     var valueTd = $(this).text();
 
-    // $(this).text('');
-
     //Добавляем форму для редактирования телефона
-    $(this).append( "<form action='#' id='myForm' enctype='multipart/form-data'><input type='tel' id='phone' class='telephone-example' name='phone' minlength ='18' required /><input class='form-submit' type='submit' value='Сохранить'/></form>" );
+    $(this).append(formClone);
 
     // Добавляем атрибут value в поле ввода телефона и добавляем атрибуту данные из ячейки
 
@@ -28,17 +29,6 @@ $(document).ready(function() {
 
     // Ставим курсор сразу в поле для редактирования телефона
     $( "#phone" ).focus();
-
-
-
-    // // При потере фокуса поля с телефоном форма отправит валидные данные и удалится
-    // $( "#phone" ).blur( function(evt) {
-    //   evt.preventDefault();
-
-    //   var dataInput = $( "#phone" ).val();
-
-    //   validate(dataInput);
-    // });
 
 
 

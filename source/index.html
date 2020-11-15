@@ -26,6 +26,13 @@
       </tbody>
     </table>
 
+    <template id="template">
+      <form action='#' id='myForm' enctype='multipart/form-data'>
+        <input type='tel' id='phone' class='telephone-example' name='phone' minlength ='18' required />
+        <input class='form-submit' type='submit' value='Сохранить'/>
+      </form>
+    </template>
+
 
 
     <!--Библиотека jquery-->
@@ -39,8 +46,11 @@
 
     <!-- main.js -->
     <script src="js/main.js/dataTable-create.js"></script>
+
+    <script src="js/main.js/clone-template.js"></script>
     <script src="js/main.js/validation.js"></script>
     <script src="js/main.js/dblclick.js"></script>
+
 
 
   </body>
