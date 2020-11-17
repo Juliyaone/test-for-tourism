@@ -27,10 +27,7 @@
     </table>
 
     <template id="template">
-      <form action='#' id='myForm' enctype='multipart/form-data'>
-        <input type='tel' id='phone' class='telephone-example' name='phone' minlength ='18' required />
-        <input class='form-submit' type='submit' value='Сохранить'/>
-      </form>
+        <input type='tel' id='phone' class='telephone-example' name='phone' minlength ='18' autofocus onfocus="this.value = this.value;" required />
     </template>
 
 
@@ -38,7 +35,7 @@
     <!--Библиотека jquery-->
     <script src="libs/code.jquery.comjquery-3.5.1.min.js"></script>
 
-     <!-- Скрипт jquery, чтобы работала библиотека Datatables -->
+    <!-- Скрипт jquery, чтобы работала библиотека Datatables -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 
     <!-- Скрипт Inputmask -->

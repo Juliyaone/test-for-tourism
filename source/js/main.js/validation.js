@@ -5,11 +5,8 @@ function validate(param) {
 
   } else {
     $( ".telephone-example" ).removeClass( "invalid" );
-
-    $(".form-submit").parent().parent().text(param);
-    $('#myForm').submit();
-    $('#myForm').remove();
+    $( "#phone" ).parent().find('.dataTd').text(param);
+    $( "#phone" ).parent().find('.dataTd').removeClass( "visually-hidden" );
+    $( "#phone" ).remove();
   }
-
 };
-
