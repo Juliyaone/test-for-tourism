@@ -9,12 +9,13 @@ $(document).ready(function() {
           },
 
     "columns": [
-        { "data": "telephone.number",
-          "name": "telephone",
-          "render" :  function ( data ) {
-            return '<div class="dataTd">' + data + '</div>';
+          {
+            "data": "telephone.number",
+            "render":  function ( data ) {
+              return '<div class="dataTd">' + data + '</div>';
+            },
+            "title": "Phone"
           }
-        }
-      ]
+        ]
   });
 });
